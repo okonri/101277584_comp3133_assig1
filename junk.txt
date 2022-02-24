@@ -1,0 +1,6 @@
+
+
+    interface Timestamps {
+        booking_date: Date!
+        booking_start: Date!
+    }

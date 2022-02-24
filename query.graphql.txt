@@ -39,7 +39,7 @@ query {
 
 mutation {
     createListing(
-        listing_id: "L1",
+        listing_id: "L001",
         listing_title: "Sea face home for rent",
         description: "welcome to Sea face home for rent",
         street: "171 Young Street",
@@ -56,7 +56,7 @@ mutation {
 
 mutation {
     createListing(
-        listing_id: "L1",
+        listing_id: "L001",
         listing_title: "The Best Cottage",
         description: "Blah Blah Blah",
         street: "123 Lola",
@@ -110,7 +110,7 @@ query {
 }
 
 query {
-    searchListingByName(name: "L1") {
+    searchListingByName(name: "L001") {
         id
         listing_id
         listing_title

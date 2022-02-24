@@ -4,12 +4,12 @@ const BookingSchema = new mongoose.Schema({
     listing_id: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     booking_id: {
         type: String,
         required: true,
-        trim: true,
+        trim: true
     },
     booking_date: {
         type: Date, 
@@ -18,11 +18,11 @@ const BookingSchema = new mongoose.Schema({
     },
     booking_start: {
         type: Date, 
-        required: true,
+        required: true
     },
     booking_end: {
         type: Date, 
-        required: true,
+        required: true
     },
     username: {
         type: String,
