@@ -67,6 +67,7 @@ exports.resolvers = {
             })
             return user.save()
         },
+
         addListing: async (parent, args) => {
             if (args.secret == process.env.SECRET_ADMIN) {
                 let listing = new Listing({
@@ -85,6 +86,7 @@ exports.resolvers = {
             }
             throw new Error("Authentication Failed, please make sure you include your secret in your request.")
         },
+        
         addBooking: async (parent, args) => {
             if (args.secret == process.env.SECRET_ADMIN) {
                 let booking = new Booking({
