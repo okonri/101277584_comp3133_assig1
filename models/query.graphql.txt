@@ -1,0 +1,125 @@
+mutation {
+  createUser(
+    username: "okonri",
+    firstname: "Emmanuel",
+    lastname: "Okonkwo",
+    password: "password",
+    email: "abc@abc.com",
+    type: "admin"
+  ){
+    id
+    username
+    firstname
+    lastname
+    password
+    email
+    type
+  }
+}
+
+query {
+    login(
+        username: "okonri",
+        password: "password"
+    ){
+        secret
+        error
+    }
+}
+
+query {
+    login(
+        username: "okonri",
+        password: "p"
+    ){
+        secret
+        error
+    }
+}
+
+mutation {
+    createListing(
+        listing_id: "L1",
+        listing_title: "Sea face home for rent",
+        description: "welcome to Sea face home for rent",
+        street: "171 Young Street",
+        city: "Toronto",
+        postal_code: "M1X0Y5",
+        price: 150.00
+        email: "xyz@okonri.com",
+        username: "okonri",
+        secret: "secret"
+    ) {
+        id
+    }
+}
+
+mutation {
+    createListing(
+        listing_id: "L1",
+        listing_title: "The Best Cottage",
+        description: "Blah Blah Blah",
+        street: "123 Lola",
+        city: "Muskoka",
+        postal_code: "M4J3E1",
+        price: 3000.00
+        email: "iam@okonri.com",
+        username: "okonri",
+        secret: "t"
+    ) {
+        id
+    }
+}
+
+mutation {
+    createBooking(
+        listing_id: "L001",
+        booking_id: "B001",
+        booking_start: "01-24-2022",
+        booking_end: "01-30-2022",
+        username: "okonri",
+        secret: "secret",
+    )
+}
+
+query {
+    getAllUserBooking(secret: "secret") {
+        id
+        listing_id
+        booking_id
+        booking_date
+        booking_start
+        booking_end
+        username
+    } 
+}
+
+query {
+    getAllAdminListings(secret: "secret") {
+        id
+        listing_id
+        listing_title
+        description
+        street
+        city
+        postal_code
+        price
+        email
+        username
+    }
+}
+
+query {
+    searchListingByName(name: "L1") {
+        id
+        listing_id
+        listing_title
+        description
+        street
+        city
+        postal_code
+        price
+        email
+        username
+    }
+}
