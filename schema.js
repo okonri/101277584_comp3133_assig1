@@ -2,7 +2,7 @@ const { gql } = require('apollo-server-express');
 
 
 exports.typeDefs = gql `
-    type Employee {
+    type User {
         id: ID!
         username: String!
         firstname: String!
@@ -44,7 +44,7 @@ exports.typeDefs = gql `
         searchListingByPostalCode(postal_code: String!) : [Listing]
 
         login(username: String!, password: String!) : Auth
-        getAllUserBooking(username: String, secret: String!) : [Booking]
+        getAllUserBooking(username: String!, secret: String!) : [Booking]
         
         getAllAdminListings(secret: String!) : [Listing]
     }
@@ -83,6 +83,5 @@ exports.typeDefs = gql `
             secret: String!
         ) : Booking
     }
-
 
 `

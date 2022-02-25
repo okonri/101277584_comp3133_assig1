@@ -49,7 +49,7 @@ const ListingSchema = new mongoose.Schema({
         required: [true, 'Please enter your username'],
         trim: true,
         lowercase: true
-    },
+    }
 });
 
 const Listing = mongoose.model("Listing", ListingSchema);

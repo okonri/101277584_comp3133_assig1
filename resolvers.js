@@ -21,15 +21,13 @@ exports.resolvers = {
             if (args.username) {
                 if (args.secret == process.env.SECRET_USER) {
                     bookings = await Booking.find({username: args.username})
-                } else {
-                    throw new Error("User login required to view bookings")
                 }
-            } else {
                 if (args.secret == process.env.SECRET_ADMIN) {
-                    bookings = await Booking.find({})
-                } else {this
-                    throw new Error("Admin login required to for this section ")
+                    bookings = await Booking.find({username: args.username})
+                } else {
+                    throw new Error("Login required to view bookings")
                 }
+                
             }
             return bookings
         },
@@ -43,7 +41,7 @@ exports.resolvers = {
         },
 
         searchListingByName: async (parent, args) => {
-            return await Listing.find({"listing_title" : args.listing_title})
+            return await Listing.find({listing_title : args.listing_title})
         },
 
         searchListingByCity: async (parent, args) => {
@@ -63,7 +61,8 @@ exports.resolvers = {
                 firstname: args.firstname,
                 lastname: args.lastname,
                 password: args.password,
-                email: args.email
+                email: args.email,
+                type: args.type
             })
             return user.save()
         },
@@ -88,36 +87,18 @@ exports.resolvers = {
         },
         
         addBooking: async (parent, args) => {
-            if (args.secret == process.env.SECRET_ADMIN) {
-                let booking = new Booking({
-                    listing_id: args.listing_id,
-                    booking_id: args.booking_id,
-                    booking_start: args.booking_start,
-                    booking_end: args.booking_end,
-                    username: args.username,
-                    secret: args.secret
-                })
-                return booking.save()
-            }
-            throw new Error("Authentication Failed, please make sure you include your secret in your request.")
+            let booking = new Booking({
+                listing_id: args.listing_id,
+                booking_id: args.booking_id,
+                booking_start: args.booking_start,
+                booking_end: args.booking_end,
+                username: args.username,
+                secret: args.secret
+            })
+            return booking.save()
         }
     }
 
-    Date: new GraphQLScalarType({
-        name: 'Date',
-        description: 'Date custom scalar type',
-        parseValue(value) {
-          return new Date(value); // value from the client
-        },
-        serialize(value) {
-          return value.getTime(); // value sent to the client
-        },
-        parseLiteral(ast) {
-          if (ast.kind === Kind.INT) {
-            return parseInt(ast.value, 10); // ast value is always in string format
-          }
-          return null;
-        },
-      }),
+
 
 }

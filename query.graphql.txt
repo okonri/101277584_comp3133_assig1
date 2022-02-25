@@ -1,5 +1,5 @@
 mutation {
-  createUser(
+  addUser(
     username: "okonri",
     firstname: "Emmanuel",
     lastname: "Okonkwo",
@@ -29,8 +29,8 @@ query {
 
 query {
     login(
-        username: "okonri",
-        password: "p"
+        username: "man",
+        password: "password"
     ){
         secret
         error
@@ -38,7 +38,7 @@ query {
 }
 
 mutation {
-    createListing(
+    addListing(
         listing_id: "L001",
         listing_title: "Sea face home for rent",
         description: "welcome to Sea face home for rent",
@@ -51,19 +51,29 @@ mutation {
         secret: "secret"
     ) {
         id
+    		listing_id
+        listing_title
+        description
+        street
+        city
+        postal_code
+        price
+        email
+        username
+        secret
     }
 }
 
 mutation {
-    createListing(
-        listing_id: "L001",
-        listing_title: "The Best Cottage",
-        description: "Blah Blah Blah",
-        street: "123 Lola",
-        city: "Muskoka",
-        postal_code: "M4J3E1",
-        price: 3000.00
-        email: "iam@okonri.com",
+    addListing(
+        listing_id: "L002",
+        listing_title: "Holiday Inn",
+        description: "Warm lodge for you and your family",
+        street: "399 cancy street",
+        city: "North York",
+        postal_code: "M3K1E2",
+        price: 500.00
+        email: "me@man.com",
         username: "okonri",
         secret: "t"
     ) {
@@ -72,7 +82,7 @@ mutation {
 }
 
 mutation {
-    createBooking(
+    addBooking(
         listing_id: "L001",
         booking_id: "B001",
         booking_start: "01-24-2022",
@@ -110,7 +120,22 @@ query {
 }
 
 query {
-    searchListingByName(name: "L001") {
+    searchListingByName(listing_title: "holiday inn") {
+        id
+        listing_id
+        listing_title
+        description
+        street
+        city
+        postal_code
+        price
+        email
+        username
+    }
+}
+
+query {
+    searchListingByCity(city: "Toronto") {
         id
         listing_id
         listing_title
